@@ -32,7 +32,7 @@ class AuthController extends Controller
         if ($request->rememberMe) {
             $this->guard()->factory()->setTTL(30 * 24 * 60);
         }
-
+        dd($this->guard()->attempt($credentials));
         if ($token = $this->guard()->attempt($credentials)) {
             return $this->respondWithToken($token);
         }
